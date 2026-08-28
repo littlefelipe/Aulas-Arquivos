@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
+// Integrantes do grupo: Felipe Provençano, Isabelle Rocha, Samuel Trindade
+
 typedef struct _Endereco Endereco;
 
 struct _Endereco
