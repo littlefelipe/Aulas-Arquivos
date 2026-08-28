@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Integrantes do grupo: Felipe Provençano, Isabelle Rocha, Samuel Trindade
+
 typedef struct _Endereco Endereco;
 typedef struct _Indice_CEP Indice_CEP;
 
