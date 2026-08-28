@@ -1,4 +1,5 @@
 #include <stdio.h>
+// Integrantes do grupo: Felipe Provençano, Isabelle Rocha, Samuel Trindade
 
 // stdout, stdin, stderr
 
