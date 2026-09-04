@@ -31,7 +31,7 @@ int compara(const void *i1, const void *i2)
 
 int main(int argc, char**argv)
 {
-	FILE *arquivoCep, *saida, *indiceCep;
+	FILE *arquivoCep, *saida, *arquivoIndice;
 	Endereco e;
     Indice_CEP *i, indiceBusca;
 	long posicao, qtd, metade;
@@ -39,7 +39,7 @@ int main(int argc, char**argv)
     int c = 0;
 	int contador = 0;
 
-	arquivoCep = fopen("cep.dat","rb");
+	arquivoCep = fopen("b14.dat","rb");
 	fseek(arquivoCep,0,SEEK_END);
 	posicao = ftell(arquivoCep);
 	qtd = posicao/sizeof(Endereco);
@@ -63,16 +63,16 @@ int main(int argc, char**argv)
 	fclose(saida);
 	free(i);
 
-	indiceCep = fopen("cep-indice.dat","rb");
-	fseek(indiceCep,0,SEEK_END);
-	long tamanhoBytes = ftell(indiceCep);
+	arquivoIndice = fopen("cep-indice.dat","rb");
+	fseek(arquivoIndice,0,SEEK_END);
+	long tamanhoBytes = ftell(arquivoIndice);
 	long tamanhoRegistros = tamanhoBytes/sizeof(Indice_CEP);
 	long inicio = 0;
 	long fim = tamanhoRegistros-1;
-    printf("Qtd Registros: %d \n", tamanhoRegistros);
+    printf("Qtd Registros: %ld \n", tamanhoRegistros);
 	long meio = (inicio+fim)/2;
-	fseek(indiceCep,meio*sizeof(Indice_CEP),SEEK_SET);
-	qt = fread(&indiceBusca,sizeof(Indice_CEP),1,indiceCep);	
+	fseek(arquivoIndice,meio*sizeof(Indice_CEP),SEEK_SET);
+	qt = fread(&indiceBusca,sizeof(Indice_CEP),1,arquivoIndice);	
 
 	while(inicio <= fim)
 	{
@@ -97,8 +97,8 @@ int main(int argc, char**argv)
             fim = meio - 1;
         }
         meio = (inicio+fim)/2;
-        fseek(indiceCep,meio*sizeof(Indice_CEP), SEEK_SET);
-        qt = fread(&indiceBusca,sizeof(Indice_CEP),1,indiceCep);
+        fseek(arquivoIndice,meio*sizeof(Indice_CEP), SEEK_SET);
+        qt = fread(&indiceBusca,sizeof(Indice_CEP),1,arquivoIndice);
 		
 	}
 	printf("Qtd buscas: %d\n", contador);
@@ -106,6 +106,6 @@ int main(int argc, char**argv)
 	qt = fread(&e, sizeof(Endereco), 1, arquivoCep);
 	printf("%.72s\n%.72s\n%.72s\n%.72s\n%.2s\n%.8s\n",e.logradouro,e.bairro,e.cidade,e.uf,e.sigla,e.cep);
 	fclose(arquivoCep);
-	fclose(indiceCep);
+	fclose(arquivoIndice);
 	return 0;
 }
