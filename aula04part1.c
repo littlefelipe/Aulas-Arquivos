@@ -39,7 +39,7 @@ int main(int argc, char**argv)
     int c = 0;
 	int contador = 0;
 
-	arquivoCep = fopen("b14.dat","rb");
+	arquivoCep = fopen("cep.dat","rb");
 	fseek(arquivoCep,0,SEEK_END);
 	posicao = ftell(arquivoCep);
 	qtd = posicao/sizeof(Endereco);
@@ -69,7 +69,7 @@ int main(int argc, char**argv)
 	long tamanhoRegistros = tamanhoBytes/sizeof(Indice_CEP);
 	long inicio = 0;
 	long fim = tamanhoRegistros-1;
-    printf("Qtd Registros: %ld \n", tamanhoRegistros);
+    printf("Qtd Registros: %d \n", tamanhoRegistros);
 	long meio = (inicio+fim)/2;
 	fseek(arquivoIndice,meio*sizeof(Indice_CEP),SEEK_SET);
 	qt = fread(&indiceBusca,sizeof(Indice_CEP),1,arquivoIndice);	

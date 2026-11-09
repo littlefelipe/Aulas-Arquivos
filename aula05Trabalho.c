@@ -4,6 +4,8 @@
 
 typedef struct _Endereco Endereco;
 
+#define NUMDIV 8
+
 struct _Endereco
 {
 	char logradouro[72];
@@ -45,14 +47,14 @@ int main(int argc, char** argv)
 	long tamanho = ftell(arquivoCep);
 	long qtdRegistros = tamanho/sizeof(Endereco);
 	rewind(arquivoCep);
-	int qtdPartes = qtdRegistros/8;
-	int resto = qtdRegistros%8;
+	int qtdPartes = qtdRegistros/NUMDIV;
+	int resto = qtdRegistros%NUMDIV;
 	
 	buffer = malloc((qtdPartes + 1) * sizeof(Endereco));
 
 	printf("%ld\n", qtdRegistros);
 
-	for(int i = 0; i < 8; i++){
+	for(int i = 0; i < NUMDIV; i++){
 		if (resto > 0)
 		{
 			n = qtdPartes + 1;
@@ -69,7 +71,9 @@ int main(int argc, char** argv)
 
 	}
 	
-	int a = 0, b = 8;
+	fclose(arquivoCep);
+	
+	int a = 0, b = NUMDIV;
 
 	while (a + 1 < b){
 		FILE *ar1, *ar2, *saida;
@@ -120,5 +124,5 @@ int main(int argc, char** argv)
 		remove(nome);
 	}
 		
-	fclose(arquivoCep);
+
 }

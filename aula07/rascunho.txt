@@ -1,0 +1,33 @@
+1) Geração dos arquivos de dados. 
+
+Para cada endereco (e) no arquivo de CEP:
+    leia o endereco e.
+    Sorteia entre 0 e 1.
+    80% dos registros salvos no arquivo de saida.
+
+2) Indexacao dos arquivos de saida
+
+Abre a arvoreB (a)
+Abre o arquivo f
+posicao = 0
+para cada endereco (e) em (f)
+    leia e
+    ArvoreB_insere(a, e.cep, posicao);
+    posicao++
+Fecha arquivos
+
+3) Juncao dos arquivos. 
+
+Abre o arquivo de saida: ceps que estão nos dois arquivos.
+Abre o Arquivo a1.
+Abre a arvore do arquivo a2.
+Para cada endereco e no arquivo a1
+  Buscar o endereco e na arvore (do a2).
+  Se encontrar (!= -1):
+     o cep está nos dois arquivos.
+     copiar o endereco para o arquivo de saida.
+fechar os arquivos. 
+
+O arquivo de saida tem os ceps que estão simultaneamente
+nos arquivos a1 e a2. 
+        
